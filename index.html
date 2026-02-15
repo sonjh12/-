@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Gift Website</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎂 Birthday Gift Website</h1>
+    <p>생일 축하 메시지와 선물을 안전하게 주고받으세요.</p>
+  </header>
+
+  <main>
+    <section id="auth-section" class="card">
+      <div class="tabs">
+        <button id="show-login" class="tab active">로그인</button>
+        <button id="show-register" class="tab">회원가입</button>
+      </div>
+
+      <form id="login-form" class="form">
+        <label>사용자명 <input type="text" id="login-username" required /></label>
+        <label>비밀번호 <input type="password" id="login-password" required /></label>
+        <button type="submit">로그인</button>
+      </form>
+
+      <form id="register-form" class="form hidden">
+        <label>사용자명 <input type="text" id="register-username" required /></label>
+        <label>비밀번호 <input type="password" id="register-password" required minlength="4" /></label>
+        <label>생년월일 <input type="date" id="register-birthday" required /></label>
+        <button type="submit">회원가입</button>
+      </form>
+      <p id="auth-message" class="message"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="card top-bar">
+        <h2 id="welcome-text"></h2>
+        <button id="logout-btn" class="secondary">로그아웃</button>
+      </div>
+
+      <div class="grid">
+        <section class="card">
+          <h3>내 프로필</h3>
+          <p id="birthday-display"></p>
+          <form id="birthday-form" class="form compact">
+            <label>생일 변경 <input type="date" id="birthday-input" required /></label>
+            <button type="submit">저장</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <h3>오늘 생일인 친구에게 메시지 보내기</h3>
+          <form id="gift-form" class="form compact">
+            <label>받는 사람
+              <select id="recipient-select" required></select>
+            </label>
+            <label>메시지
+              <textarea id="gift-message" required maxlength="300" placeholder="생일 축하 메시지를 입력하세요"></textarea>
+            </label>
+            <label>선물 금액 (원)
+              <input type="number" id="gift-amount" min="0" step="1000" required />
+            </label>
+            <button type="submit">메시지 남기기</button>
+          </form>
+          <p id="gift-note" class="message"></p>
+        </section>
+
+        <section class="card full">
+          <h3>내게 온 메시지 (생일 이후 열람 가능)</h3>
+          <p id="unlock-status" class="message"></p>
+          <p id="total-gift"></p>
+          <ul id="inbox-list" class="list"></ul>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <template id="message-template">
+    <li class="message-item">
+      <div class="message-head"></div>
+      <p class="message-body"></p>
+      <div class="reply-block"></div>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
